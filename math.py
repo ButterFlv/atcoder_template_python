@@ -36,15 +36,13 @@ def get_stuck_two_dim(_stuck, _a, _b, _c, _d):
 # 階乗 n!
 def fac(_n):
   res=1
-  for i in range(1, _n+1):
-    res*=i
+  for i in range(1, _n+1): res*=i
   return res
 
 # 順列の nPr
 def P(_n, _r):
   res=1
-  for i in range(_r):
-    res*=(_n-i)
+  for i in range(_r): res*=(_n-i)
   return res
 
 # 組み合わせのコンビネーション
@@ -55,19 +53,17 @@ def C(_n, _r):
 
 # 平方数判定
 def isSquare(_n):
-  if _n==0:
-    return True
-  _left, _right=0, 10**len(str(_n))
-  _midi=(_left+_right)//2
-  while _left<=_right:
-    if _n==_midi**2:
-      return True
-    if _n<_midi**2:
-      _right=_midi-1
-    else:
-      _left=_midi+1
-    _midi=(_right+_left)//2
-  return False
+  if _n < 0: return False
+  if _n == 0: return True
+  ng, ok = 0, 1
+  while ok < _n: ok = ok << 6
+  while ok - ng > 1:
+    mid = (ok + ng) // 2
+    val = mid * mid
+    if val >= _n: ok = mid
+    else: ng = mid
+  if ok*ok == _n: return True
+  else: return False
 
 # 高速素数判定
 import random
