@@ -11,4 +11,4 @@ def doubling(_size, _f, _repeat):
   for _i in range(1, _times):
     for _j in range(_size):
       _dp[_i][_j] = _dp[_i-1][_dp[_i-1][_j]]
-  return tuple(_dp[-1])
+  return _dp
