@@ -4,7 +4,7 @@ class mint:
 
   def init(MOD = 998244353, inv_generate = 0):
     mint.MOD = MOD
-    mint.inv = [None]*(inv_generate+1)
+    mint.inv = [None]*(inv_generate + 2)
     mint.inv[1] = 1
     for a in range(2, inv_generate + 1):
       mint.inv[a] = ( -(MOD//a) * mint.inv[MOD%a] ) % MOD
