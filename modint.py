@@ -2,9 +2,9 @@ class mint:
   inv = None
   MOD = None
 
-  def init(MOD = 998244353, inv_generate = 0):
+  def init(MOD = 998244353, inv_generate = 1):
     mint.MOD = MOD
-    mint.inv = [None]*(inv_generate + 2)
+    mint.inv = [None]*(inv_generate + 1)
     mint.inv[1] = 1
     for a in range(2, inv_generate + 1):
       mint.inv[a] = ( -(MOD//a) * mint.inv[MOD%a] ) % MOD
