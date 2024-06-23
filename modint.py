@@ -22,7 +22,7 @@ class mint:
     return mint(self.n * other.n) if isinstance(other, mint) else mint(self.n * other)
   def __truediv__(self, other):
     a, b = self.n, other.n if isinstance(other, mint) else other % self.MOD
-    return mint(a * self.inv[b]) if b<len(self.inv) else mint(a * pow(b, -1, self.MOD))
+    return mint(a * self.inv[b]) if b<len(self.inv) else mint(a * self.inv_extgcd(b))
   def __pow__(self, other):
     return mint(pow(self.n, other.n, self.MOD)) if isinstance(other, mint) else mint(pow(self.n, other, self.MOD))
 
@@ -32,7 +32,7 @@ class mint:
   __rmul__ = __mul__
   def __rtruediv__(self, other):
     a, b = other.n if isinstance(other, mint) else other, self.n
-    return mint(a * self.inv[b]) if b<len(self.inv) else mint(a * pow(b, -1, self.MOD))
+    return mint(a * self.inv[b]) if b<len(self.inv) else mint(a * self.inv_extgcd(b))
   def __rpow__(self, other):
     return mint(pow(other.n, self.n, self.MOD)) if isinstance(other, mint) else mint(pow(other, self.n, self.MOD))
 
@@ -43,3 +43,11 @@ class mint:
     return self.n == other.n if isinstance(other, mint) else self.n == other%self.MOD
   def __ne__(self, other):
     return not self.__eq__(other)
+
+  def inv_extgcd(a):
+    u = 1; v = 0; b = MOD
+    while b:
+      t = a // b
+      a -= t * b; a, b=b, a
+      u -= t * v; u, v=v, u
+    return u % MOD
