@@ -12,7 +12,7 @@ def ReRooting(merge, addroot, e, edge, startvertex = 0):
       if nv==par: continue
       dp[v][i] = preorder(v, nv)
       result = merge(result, dp[v][i])
-    return addroot(result)
+    return addroot(v, result)
   preorder(None, startvertex)
 
   def postorder(par, dp_par, ce):
@@ -28,11 +28,11 @@ def ReRooting(merge, addroot, e, edge, startvertex = 0):
       acc_l[i+1] = merge(acc_l[i], dp[v][i])
     for i in range(L-1, -1, -1):
       acc_r[i] = merge(acc_r[i+1], dp[v][i])
-    ans[v] = addroot(acc_l[L])
+    ans[v] = addroot(v, acc_l[L])
     for i in range(L):
       nv = edge[v][i]
       if nv==par: continue
-      postorder(v, addroot(merge(acc_l[i], acc_r[i+1])), i)
+      postorder(v, addroot(v, merge(acc_l[i], acc_r[i+1])), i)
   postorder(None, None, None)
 
   return ans
