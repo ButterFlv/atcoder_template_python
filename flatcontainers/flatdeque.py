@@ -1,17 +1,16 @@
 class FlatDeque:
     from collections import deque
-    def __init__(self, DIMENTIONS, DEFAULT = None):
+    def __init__(self, DIMENTIONS):
         assert len(DIMENTIONS) >= 2
         self.D = DIMENTIONS
         self.A = [0]*len(DIMENTIONS)
-        self.default = DEFAULT
         for i in range(len(self.A)):
             while 1<<self.A[i]<DIMENTIONS[i]:
                 self.A[i] += 1
         self.B = [0]*(len(self.A)+1)
         for i in range(len(self.B)-2, -1, -1):
             self.B[i] = self.A[i] + self.B[i+1]
-        self.a = deque()
+        self.a = FlatDeque.deque()
         self.dig = len(DIMENTIONS)
 
     def __len__(self): return len(self.a)
