@@ -1,4 +1,5 @@
 def flatting(__init, *__bases):
+    global __B, __list, __f, __g
     __B = list(__bases) + [1]
     for i in range(len(__B)-2, -1, -1):
         __B[i] *= __B[i+1]
