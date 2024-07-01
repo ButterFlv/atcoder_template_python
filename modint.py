@@ -9,11 +9,11 @@ class mint:
 
   def __add__(self, other):
     return mint(self.n+other.n)if isinstance(other,mint)else mint(self.n+other)
-  def __sub__(self, other_mint):
+  def __sub__(self, other):
     return mint(self.n-other.n)if isinstance(other,mint)else mint(self.n-other)
-  def __mul__(self, other_mint):
+  def __mul__(self, other):
     return mint(self.n*other.n)if isinstance(other,mint)else mint(self.n*other)
-  def __truediv__(self, other_mint):
+  def __truediv__(self, other):
     return mint(self.n*mint.iegcd(other.n))if isinstance(other,mint)else mint(self.n*mint.iegcd(other))
   def __pow__(self, other):
     return mint(pow(self.n, other_number, mint.MOD))
